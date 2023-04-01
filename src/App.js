@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React , {useState} from 'react'
 
-function App() {
+const App = () => {
+  const [data,setData] = useState({username:" ",email:" ",password:" ",confirmpassword:" "})
+  const {username,email,password,confirmpassword} = data;
+
+  const handler = e => {
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  const submithandler = e => {
+    e.preventDefault()
+    console.log(data)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <center>
+        <form onSubmit={submithandler}>
+           <input type="text" name="username" value={username} onChange={handler}/><br/>
+           <input type="text" name="email" value={email} onChange={handler}/><br/>
+           <input type="password" name="password" value={password} onChange={handler}/><br/>
+           <input type="password" name="confirmpassword" value ={confirmpassword} onChange={handler}/><br/>
+           <input type="submit" name="submit"/>
+        </form>
+      </center>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
